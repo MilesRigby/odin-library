@@ -66,19 +66,41 @@ function drawBooksToPage() {
         pageCountElement.textContent = "Pages: " + book.pageCount;
         card.appendChild(pageCountElement);
 
-
-
         var readElement = document.createElement("p");
         readElement.className = "book-read";
         if (book.haveRead) { readElement.innerText = "Read: Yes"; }
         else               { readElement.innerText = "Read: No"; }
         card.appendChild(readElement);
 
+        // Button to permanently remove the book from the library
+        var deleteButton = document.createElement("button");
+        deleteButton.className = "book-delete";
+        deleteButton.textContent = "Delete";
+
+        deleteButton.addEventListener("click", (event) => { 
+            var bookId = event.currentTarget.parentElement.querySelector(".book-id").textContent;
+            removeBook(bookId); 
+        })
+
+        card.appendChild(deleteButton);
+
         booksDisplay.appendChild(card);
+    }
+}
+
+function removeBook(id) {
+    for (var book in library) {
+        if (library[book].id == id) { library.splice(book, 1); }
+    }
+
+    for (var card of document.getElementsByClassName("book-card")) {
+        var cardId = card.querySelector(".book-id").textContent;
+        if (cardId == id) { card.remove(); }
     }
 }
 
 addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
 addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
+addBookToLibrary("testboooooooooooooooooook", "testmaaaaaaaaaan", 11000110011, true);
 
 drawBooksToPage();

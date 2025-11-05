@@ -43,6 +43,8 @@
 }
 
 .book-card {
+    position: relative;
+
     width: min(30rem, min-content);
 
     padding: 1rem;
@@ -73,6 +75,23 @@
 
 .book-author {
     color: darkblue;
+}
+
+.book-delete {
+    position: absolute;
+    left: 2rem;
+
+    border-radius: 1rem;
+
+    padding: 0.5rem 1rem;
+
+    font-size: 1.5rem;
+    background: repeating-linear-gradient(
+        120deg,
+        lightgray 0px,
+        red 10px,
+        lightgray 20px
+    );
 }
 
 #add-book-button {
