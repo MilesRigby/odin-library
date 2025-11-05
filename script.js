@@ -35,7 +35,49 @@ function addBookToLibrary(title, author, pageCount, haveRead) {
     // Update display when implemented
 }
 
+function drawBooksToPage() {
+    var booksDisplay = document.getElementById("books");
+
+    for (var book of library) {
+    
+        // Card to display info about one book
+        var card = document.createElement("div");
+        card.className = "book-card";
+
+        // Hidden element that stores the id
+        var idElement = document.createElement("div");
+        idElement.className = "book-id";
+        idElement.textContent = book.id;
+        card.appendChild(idElement);
+
+        // Book title, author, page count, and read status
+        var titleElement = document.createElement("p");
+        titleElement.className = "book-title";
+        titleElement.textContent = book.title;
+        card.appendChild(titleElement);
+
+        var authorElement = document.createElement("p");
+        authorElement.className = "book-author";
+        authorElement.textContent = book.author;
+        card.appendChild(authorElement);
+
+        var pageCountElement = document.createElement("p");
+        pageCountElement.className = "book-page-count";
+        pageCountElement.textContent = book.pageCount;
+        card.appendChild(pageCountElement);
+
+        var readElement = document.createElement("p");
+        readElement.className = "book-read";
+        readElement.textContent = book.haveRead;
+        card.appendChild(readElement);
+
+        booksDisplay.appendChild(card);
+    }
+}
+
 addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
-addBookToLibrary("The Lord of The Rings, The Fellowship of The Ring", "J.R.R. Tolkien", 510, true);
+addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, true);
+
+drawBooksToPage();
 
 console.log(library)
