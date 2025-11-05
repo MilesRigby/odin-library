@@ -58,17 +58,20 @@ function drawBooksToPage() {
 
         var authorElement = document.createElement("p");
         authorElement.className = "book-author";
-        authorElement.textContent = book.author;
+        authorElement.textContent = "Author: " + book.author;
         card.appendChild(authorElement);
 
         var pageCountElement = document.createElement("p");
         pageCountElement.className = "book-page-count";
-        pageCountElement.textContent = book.pageCount;
+        pageCountElement.textContent = "Pages: " + book.pageCount;
         card.appendChild(pageCountElement);
+
+
 
         var readElement = document.createElement("p");
         readElement.className = "book-read";
-        readElement.textContent = book.haveRead;
+        if (book.haveRead) { readElement.innerText = "Read: Yes"; }
+        else               { readElement.innerText = "Read: No"; }
         card.appendChild(readElement);
 
         booksDisplay.appendChild(card);
@@ -76,8 +79,6 @@ function drawBooksToPage() {
 }
 
 addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
-addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, true);
+addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
 
 drawBooksToPage();
-
-console.log(library)

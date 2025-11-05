@@ -5,8 +5,37 @@
     font-size: 1rem;
 }
 
+#page {
+    display: flex;
+
+}
+
 #library {
+    width: min(90%, 80rem);
     margin: 1rem;
+    padding: 2rem;
+
+    border-style: solid;
+    border-width: 5px;
+    border-color: orangered;
+    border-radius: 3rem;
+
+    background: orange;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+#library-heading {
+    font-size: 6rem;
+
+    color: blue;
+}
+
+#books {
+    width: 100%;
 }
 
 .book-id {
@@ -14,11 +43,43 @@
 }
 
 .book-card {
-    border-style: solid;
-    border-width: 2px;
-    border-color: gray;
+    width: min(30rem, min-content);
 
     padding: 1rem;
     margin-top: 1rem;
     margin-bottom: 1rem;
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: purple;
+    border-radius: 2rem;
+
+    background-color: lightblue;
+    box-shadow: 2px 1px 5px black;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.book-title {
+    font-size: 2rem;
+    color: blue;
+}
+
+.book-author, .book-page-count, .book-read {
+    font-size: 1.5rem;
+}
+
+.book-author {
+    color: darkblue;
+}
+
+#add-book-button {
+    font-size: 2rem;
+    padding: 0.7rem;
+
+    border-radius: 50%;
+
+    background-color: whitesmoke;
 }
