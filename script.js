@@ -84,10 +84,23 @@ function drawBooksToPage() {
 
         card.appendChild(deleteButton);
 
+        // Button to toggle whether a book has been read
+        var readToggleButton = document.createElement("button");
+        readToggleButton.className = "book-read-toggle";
+        readToggleButton.textContent = "Set read/unread";
+
+        readToggleButton.addEventListener("click", (event) => { 
+            var bookId = event.currentTarget.parentElement.querySelector(".book-id").textContent;
+            toggleBookRead(bookId); 
+        })
+
+        card.appendChild(readToggleButton);
+
         booksDisplay.appendChild(card);
     }
 }
 
+// Remove a book from the library and display by ID
 function removeBook(id) {
     for (var book in library) {
         if (library[book].id == id) { library.splice(book, 1); }
@@ -99,6 +112,22 @@ function removeBook(id) {
     }
 }
 
+// Toggle whether haveRead is true or false and update display
+function toggleBookRead(id) {
+    for (var book in library) {
+        if (library[book].id == id) { library[book].haveRead = !library[book].haveRead; console.log(library[book].haveRead); }
+    }
+
+    for (var card of document.getElementsByClassName("book-card")) {
+        var cardId = card.querySelector(".book-id").textContent;
+        var haveRead = card.querySelector(".book-read");
+        if (cardId == id) { haveRead.textContent == "Read: Yes" ? haveRead.textContent = "Read: No" : haveRead.textContent = "Read: Yes"; }
+    }
+}
+
+addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
+addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
+addBookToLibrary("testboooooooooooooooooook", "testmaaaaaaaaaan", 11000110011, true);
 addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
 addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
 addBookToLibrary("testboooooooooooooooooook", "testmaaaaaaaaaan", 11000110011, true);

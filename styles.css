@@ -6,13 +6,19 @@
 }
 
 #page {
+    min-height: 100vh;
+    height: fit-content;
     display: flex;
+    flex-direction: column;
 
+    background-color: lightgray;
+
+    align-items: center;
 }
 
 #library {
     width: min(90%, 80rem);
-    margin: 1rem;
+    margin: 5rem;
     padding: 2rem;
 
     border-style: solid;
@@ -21,6 +27,8 @@
     border-radius: 3rem;
 
     background: orange;
+
+    box-shadow: 3px 3px 20px black;
 
     display: flex;
     flex-direction: column;
@@ -57,7 +65,7 @@
     border-radius: 2rem;
 
     background-color: lightblue;
-    box-shadow: 2px 1px 5px black;
+    box-shadow: 2px 1px 8px black;
 
     display: flex;
     flex-direction: column;
@@ -65,8 +73,10 @@
 }
 
 .book-title {
+    max-width: 60%;
     font-size: 2rem;
     color: blue;
+    text-align: center;
 }
 
 .book-author, .book-page-count, .book-read {
@@ -79,19 +89,42 @@
 
 .book-delete {
     position: absolute;
-    left: 2rem;
-
-    border-radius: 1rem;
+    left: 1rem;
 
     padding: 0.5rem 1rem;
 
-    font-size: 1.5rem;
+    border-radius: 1rem;
+
+    font-weight: bold;
+
     background: repeating-linear-gradient(
         120deg,
         lightgray 0px,
         red 10px,
         lightgray 20px
     );
+
+    font-size: 1.5rem;
+}
+
+.book-read-toggle {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+
+    padding: 1rem;
+
+    border-radius: 1rem;
+
+    font-weight: bold;
+
+    background: #add8e6;
+
+    font-size: 1rem;
+}
+
+.book-read-toggle:hover {
+    background: #7aa8b8;
 }
 
 #add-book-button {
