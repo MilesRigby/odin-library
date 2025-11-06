@@ -27,12 +27,76 @@ Read: ${readString}
     }
 }
 
+// Modal form to get data for new books to add to the library
+function openBookFormModal() {
+    var bookModalBackground = document.createElement("div");
+    bookModalBackground.className = "modal-background";
+
+    var bookModal = document.createElement("div");
+    bookModal.className = "modal";
+
+    var bookModalHeader = document.createElement("p");
+    bookModalHeader.className = "modal-header";
+    bookModalHeader.innerText = "Add New Book";
+    bookModal.appendChild(bookModalHeader);
+
+    var bookForm = document.createElement("form");
+    bookForm.action = "#";
+    bookForm.method = "get";
+    bookForm.className = "book-form"
+
+    var titleInput = document.createElement("input");
+    titleInput.type = "text";
+    titleInput.className = "text-input";
+    titleInput.setAttribute("required", "");
+    titleInput.placeholder = "Enter Book Title";
+    bookForm.appendChild(titleInput);
+
+    var authorInput = document.createElement("input");
+    authorInput.type = "text";
+    authorInput.className = "text-input";
+    authorInput.setAttribute("required", "");
+    authorInput.placeholder = "Enter Author";
+    bookForm.appendChild(authorInput);
+
+    var pageCountInput = document.createElement("input");
+    pageCountInput.type = "number";
+    pageCountInput.className = "text-input";
+    pageCountInput.setAttribute("required", "");
+    pageCountInput.placeholder = "Enter Page Count";
+    bookForm.appendChild(pageCountInput);
+
+    var bookSubmitButton = document.createElement("button");
+    bookSubmitButton.type = "submit";
+    bookSubmitButton.className = "submit-button";
+    bookSubmitButton.innerText = "Add";
+    bookForm.appendChild(bookSubmitButton);
+
+    bookModal.appendChild(bookForm);
+
+    var bookCloseButton = document.createElement("button");
+    bookCloseButton.className = "exit-modal-button";
+    bookCloseButton.innerText = "X";
+
+    bookCloseButton.addEventListener("click", (event) => {
+        event.currentTarget.parentElement.parentElement.remove()
+    })
+
+    bookModal.appendChild(bookCloseButton)
+
+    bookModalBackground.appendChild(bookModal);
+    document.getElementById("page").appendChild(bookModalBackground);
+}
+
+// Create a new book's data and card
 function addBookToLibrary(title, author, pageCount, haveRead) {
     var newBook = new Book(title, author, pageCount, haveRead)
 
     library.push(newBook)
 
     // Update display when implemented
+    document.getElementById("books").innerHTML = "";
+    drawBooksToPage();
 }
 
 function drawBooksToPage() {
@@ -87,7 +151,7 @@ function drawBooksToPage() {
         // Button to toggle whether a book has been read
         var readToggleButton = document.createElement("button");
         readToggleButton.className = "book-read-toggle";
-        readToggleButton.textContent = "Set read/unread";
+        readToggleButton.textContent = "Set read/\nunread";
 
         readToggleButton.addEventListener("click", (event) => { 
             var bookId = event.currentTarget.parentElement.querySelector(".book-id").textContent;
@@ -115,7 +179,7 @@ function removeBook(id) {
 // Toggle whether haveRead is true or false and update display
 function toggleBookRead(id) {
     for (var book in library) {
-        if (library[book].id == id) { library[book].haveRead = !library[book].haveRead; console.log(library[book].haveRead); }
+        if (library[book].id == id) { library[book].haveRead = !library[book].haveRead; }
     }
 
     for (var card of document.getElementsByClassName("book-card")) {
@@ -125,11 +189,11 @@ function toggleBookRead(id) {
     }
 }
 
-addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
-addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
-addBookToLibrary("testboooooooooooooooooook", "testmaaaaaaaaaan", 11000110011, true);
-addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
-addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
-addBookToLibrary("testboooooooooooooooooook", "testmaaaaaaaaaan", 11000110011, true);
+document.getElementById("add-book-button").addEventListener("click", () => { openBookFormModal(); })
 
-drawBooksToPage();
+addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
+addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
+addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);
+addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
+addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
+addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);
