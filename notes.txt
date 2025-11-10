@@ -1,3 +1,3 @@
-1. add and test form functionality
-2. add labels to form inputs
+1. add comments to code
+2. change book read toggle logic to only modify library, and then redraw?
 3. redo styles for practicality over the current colourful design.

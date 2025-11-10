@@ -5,6 +5,7 @@
     font-size: 1rem;
 }
 
+/* grey page background, with positioning settings for content */
 #page {
     position: relative;
     width: 100%;
@@ -18,6 +19,13 @@
     align-items: center;
 }
 
+
+
+/*
+Styles for modals
+*/
+
+/* dark transparent background for modals to increase focus on the modal itself */
 .modal-background {
     position: absolute;
     width: 100%;
@@ -29,6 +37,7 @@
     background-color: rgba(0, 0, 0, 0.4)
 }
 
+/* modal fixed positioning on page - causes some issues when zooming or shrinking the window */
 .modal {
     position: fixed;
     min-width: min-content;
@@ -115,6 +124,12 @@
     background: rgb(255, 88, 88);
 }
 
+
+
+/*
+Styles for the main body of the library
+*/
+
 #library {
     width: min(80%, 80rem);
     margin: 5rem;
@@ -145,10 +160,18 @@
     width: 100%;
 }
 
+
+
+/*
+Styles for cards which display info on books in the library.
+*/
+
+/* hide the randomised book IDs, which are used for modifying books and don't need to be displayed */
 .book-id {
     display: none;
 }
 
+/* Raised card for book info display */
 .book-card {
     position: relative;
 
@@ -186,6 +209,7 @@
     color: darkblue;
 }
 
+/* exit button for closing the modal */
 .book-delete {
     position: absolute;
     left: 1rem;
@@ -228,6 +252,12 @@
 .book-read-toggle:hover {
     background: #7aa8b8;
 }
+
+
+
+/*
+Simple button for adding new books to the library
+*/
 
 #add-book-button {
     font-size: 2rem;

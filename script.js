@@ -1,16 +1,19 @@
-const library = []
+const library = [] // Stores data for all books
 
+// 
 function Book(title, author, pageCount, haveRead) {
     if (!new.target) {
-        throw Error("Nah m8");
+        throw Error("Constructor Book() called without 'new' keyword");
     }
 
+    // Required data for book object, including a unique randomly generated ID, as well as the book's title, author, page count, and whether the user has read it
     this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
     this.pageCount = pageCount;
     this.haveRead = haveRead;
 
+    // Function which returns a string with all the standard info about the book
     this.info = function() {
     if (this.haveRead) {var readString = "Yes"}
     else               {var readString = "No"}
@@ -29,9 +32,12 @@ Read: ${readString}
 
 // Modal form to get data for new books to add to the library
 function openBookFormModal() {
+
+    // Creates a partially transparent background to obscure the main page while the modal is in use. Also blocks access to non-modal buttons.
     var bookModalBackground = document.createElement("div");
     bookModalBackground.className = "modal-background";
 
+    // The main body of the modal itself
     var bookModal = document.createElement("div");
     bookModal.className = "modal";
 
@@ -40,12 +46,14 @@ function openBookFormModal() {
     bookModalHeader.innerText = "Add New Book";
     bookModal.appendChild(bookModalHeader);
 
+    // The form the user needs t ofill in to provide info for the book's library entry
     var bookForm = document.createElement("form");
     bookForm.action = "#";
     bookForm.method = "get";
     bookForm.className = "book-form"
 
 
+    // Book title, text field
     var titleLabel = document.createElement("label");
     titleLabel.className = "form-label";
     titleLabel.for = "title";
@@ -61,6 +69,7 @@ function openBookFormModal() {
     bookForm.appendChild(titleInput);
 
 
+    // Book author, text field
     var authorLabel = document.createElement("label");
     authorLabel.className = "form-label";
     authorLabel.for = "author";
@@ -75,7 +84,7 @@ function openBookFormModal() {
     authorInput.placeholder = "Enter Author";
     bookForm.appendChild(authorInput);
 
-
+    // Book title, number field, greater than 0
     var pageCountLabel = document.createElement("label");
     pageCountLabel.className = "form-label";
     pageCountLabel.for = "pages";
@@ -92,12 +101,14 @@ function openBookFormModal() {
     bookForm.appendChild(pageCountInput);
 
 
+    // Button to submit form and add new Book object to library
     var bookSubmitButton = document.createElement("button");
     bookSubmitButton.type = "submit";
     bookSubmitButton.className = "submit-button";
     bookSubmitButton.innerText = "Add";
     bookForm.appendChild(bookSubmitButton);
 
+    // prevent form from trying to send data elsewhere and add new book on submit
     bookForm.addEventListener("submit", (event) => {
         event.preventDefault();
         formData = new FormData(event.target);
@@ -105,8 +116,10 @@ function openBookFormModal() {
         bookModalBackground.remove();
     })
 
+
     bookModal.appendChild(bookForm);
 
+    // Option to close modal without adding a new book
     var bookCloseButton = document.createElement("button");
     bookCloseButton.className = "exit-modal-button";
     bookCloseButton.innerText = "X";
@@ -132,11 +145,14 @@ function addBookToLibrary(title, author, pageCount, haveRead) {
     drawBooksToPage();
 }
 
+// Draws a card for each book displaying its information
 function drawBooksToPage() {
     var booksDisplay = document.getElementById("books");
 
+    // Empty display for replacement
     booksDisplay.innerHTML = "";
 
+    // Loop over each book
     for (var book of library) {
     
         // Card to display info about one book
@@ -214,18 +230,15 @@ function toggleBookRead(id) {
         if (library[book].id == id) { library[book].haveRead = !library[book].haveRead; }
     }
 
-    for (var card of document.getElementsByClassName("book-card")) {
-        var cardId = card.querySelector(".book-id").textContent;
-        var haveRead = card.querySelector(".book-read");
-        if (cardId == id) { haveRead.textContent == "Read: Yes" ? haveRead.textContent = "Read: No" : haveRead.textContent = "Read: Yes"; }
-    }
+    drawBooksToPage();
 }
 
+// Make "Add Book" button open the modal form to add new books to the library
 document.getElementById("add-book-button").addEventListener("click", () => { openBookFormModal(); })
 
-addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
+/*addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
 addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
 addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);
 addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
 addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
-addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);
+addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);*/
