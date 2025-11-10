@@ -137,10 +137,10 @@ Styles for the main body of the library
 
     border-style: solid;
     border-width: 5px;
-    border-color: orangered;
+    border-color: rgb(146, 131, 126);
     border-radius: 3rem;
 
-    background: orange;
+    background: rgb(255, 254, 240);
 
     box-shadow: 3px 3px 20px black;
 
@@ -183,10 +183,10 @@ Styles for cards which display info on books in the library.
 
     border-style: solid;
     border-width: 2px;
-    border-color: purple;
+    border-color: rgb(102, 161, 189);
     border-radius: 2rem;
 
-    background-color: lightblue;
+    background-color: rgb(227, 234, 238);
     box-shadow: 2px 1px 8px black;
 
     display: flex;
@@ -214,20 +214,15 @@ Styles for cards which display info on books in the library.
     position: absolute;
     left: 1rem;
 
-    padding: 0.5rem 1rem;
+    padding: 0rem 0.5rem;
 
-    border-radius: 1rem;
+    border-radius: 50%;
 
     font-weight: bold;
 
-    background: repeating-linear-gradient(
-        120deg,
-        lightgray 0px,
-        red 10px,
-        lightgray 20px
-    );
+    background: rgb(255, 106, 106) 10px;
 
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
 
 .book-read-toggle {
@@ -244,7 +239,7 @@ Styles for cards which display info on books in the library.
 
     font-weight: bold;
 
-    background: #add8e6;
+    background: #c3dfe9;
 
     font-size: 1.3rem;
 }
@@ -263,7 +258,7 @@ Simple button for adding new books to the library
     font-size: 2rem;
     padding: 0.7rem;
 
-    border-radius: 50%;
+    border-radius: 1rem;
 
     background-color: whitesmoke;
 }

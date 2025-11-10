@@ -190,7 +190,7 @@ function drawBooksToPage() {
         // Button to permanently remove the book from the library
         var deleteButton = document.createElement("button");
         deleteButton.className = "book-delete";
-        deleteButton.textContent = "Delete";
+        deleteButton.textContent = "X";
 
         deleteButton.addEventListener("click", (event) => { 
             var bookId = event.currentTarget.parentElement.querySelector(".book-id").textContent;
@@ -236,9 +236,6 @@ function toggleBookRead(id) {
 // Make "Add Book" button open the modal form to add new books to the library
 document.getElementById("add-book-button").addEventListener("click", () => { openBookFormModal(); })
 
-/*addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
-addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
-addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);
 addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
-addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
-addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);*/
+addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 576, false);
+addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);
