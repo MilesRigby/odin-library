@@ -47,6 +47,7 @@ function openBookFormModal() {
 
     var titleInput = document.createElement("input");
     titleInput.type = "text";
+    titleInput.name = "name";
     titleInput.className = "text-input";
     titleInput.setAttribute("required", "");
     titleInput.placeholder = "Enter Book Title";
@@ -54,6 +55,7 @@ function openBookFormModal() {
 
     var authorInput = document.createElement("input");
     authorInput.type = "text";
+    authorInput.name = "author";
     authorInput.className = "text-input";
     authorInput.setAttribute("required", "");
     authorInput.placeholder = "Enter Author";
@@ -61,8 +63,10 @@ function openBookFormModal() {
 
     var pageCountInput = document.createElement("input");
     pageCountInput.type = "number";
+    pageCountInput.name = "pages";
     pageCountInput.className = "text-input";
     pageCountInput.setAttribute("required", "");
+    pageCountInput.min = "1";
     pageCountInput.placeholder = "Enter Page Count";
     bookForm.appendChild(pageCountInput);
 
@@ -71,6 +75,13 @@ function openBookFormModal() {
     bookSubmitButton.className = "submit-button";
     bookSubmitButton.innerText = "Add";
     bookForm.appendChild(bookSubmitButton);
+
+    bookForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        formData = new FormData(event.target);
+        addBookToLibrary(formData.get("name"), formData.get("author"), formData.get("pages"), false);
+        bookModalBackground.remove();
+    })
 
     bookModal.appendChild(bookForm);
 
@@ -191,9 +202,9 @@ function toggleBookRead(id) {
 
 document.getElementById("add-book-button").addEventListener("click", () => { openBookFormModal(); })
 
-addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
+/*addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
 addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
 addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);
 addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
 addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
-addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);
+addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);*/
