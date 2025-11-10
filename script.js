@@ -238,4 +238,4 @@ document.getElementById("add-book-button").addEventListener("click", () => { ope
 
 addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
 addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 576, false);
-addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);
+addBookToLibrary("The Silmarillion", "J. R. R. Tolkien", 384, true);
