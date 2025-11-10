@@ -153,7 +153,7 @@ Styles for the main body of the library
 #library-heading {
     font-size: 6rem;
 
-    color: blue;
+    color: rgb(0, 0, 136);
 }
 
 #books {
