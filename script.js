@@ -45,6 +45,13 @@ function openBookFormModal() {
     bookForm.method = "get";
     bookForm.className = "book-form"
 
+
+    var titleLabel = document.createElement("label");
+    titleLabel.className = "form-label";
+    titleLabel.for = "title";
+    titleLabel.innerText = "Book Title:";
+    bookForm.appendChild(titleLabel);
+
     var titleInput = document.createElement("input");
     titleInput.type = "text";
     titleInput.name = "name";
@@ -52,6 +59,13 @@ function openBookFormModal() {
     titleInput.setAttribute("required", "");
     titleInput.placeholder = "Enter Book Title";
     bookForm.appendChild(titleInput);
+
+
+    var authorLabel = document.createElement("label");
+    authorLabel.className = "form-label";
+    authorLabel.for = "author";
+    authorLabel.innerText = "Book Author:";
+    bookForm.appendChild(authorLabel);
 
     var authorInput = document.createElement("input");
     authorInput.type = "text";
@@ -61,6 +75,13 @@ function openBookFormModal() {
     authorInput.placeholder = "Enter Author";
     bookForm.appendChild(authorInput);
 
+
+    var pageCountLabel = document.createElement("label");
+    pageCountLabel.className = "form-label";
+    pageCountLabel.for = "pages";
+    pageCountLabel.innerText = "Number of Pages:";
+    bookForm.appendChild(pageCountLabel);
+
     var pageCountInput = document.createElement("input");
     pageCountInput.type = "number";
     pageCountInput.name = "pages";
@@ -69,6 +90,7 @@ function openBookFormModal() {
     pageCountInput.min = "1";
     pageCountInput.placeholder = "Enter Page Count";
     bookForm.appendChild(pageCountInput);
+
 
     var bookSubmitButton = document.createElement("button");
     bookSubmitButton.type = "submit";
@@ -112,6 +134,8 @@ function addBookToLibrary(title, author, pageCount, haveRead) {
 
 function drawBooksToPage() {
     var booksDisplay = document.getElementById("books");
+
+    booksDisplay.innerHTML = "";
 
     for (var book of library) {
     
@@ -181,10 +205,7 @@ function removeBook(id) {
         if (library[book].id == id) { library.splice(book, 1); }
     }
 
-    for (var card of document.getElementsByClassName("book-card")) {
-        var cardId = card.querySelector(".book-id").textContent;
-        if (cardId == id) { card.remove(); }
-    }
+    drawBooksToPage();
 }
 
 // Toggle whether haveRead is true or false and update display
@@ -202,9 +223,9 @@ function toggleBookRead(id) {
 
 document.getElementById("add-book-button").addEventListener("click", () => { openBookFormModal(); })
 
-/*addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
+addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
 addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
 addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);
 addBookToLibrary("The Hobbit, Or, There and Back Again", "J.R.R. Tolkien", 310, true);
 addBookToLibrary("The Lord of The Rings: The Fellowship of The Ring", "J.R.R. Tolkien", 510, false);
-addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);*/
+addBookToLibrary("testbooooooooook", "testmaaaaaaaaaan", 11000110011, true);
