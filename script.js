@@ -1,31 +1,36 @@
 const library = [] // Stores data for all books
 
 // 
-function Book(title, author, pageCount, haveRead) {
-    if (!new.target) {
-        throw Error("Constructor Book() called without 'new' keyword");
+class Book {
+
+    constructor(title, author, pageCount, haveRead) {
+
+        if (!new.target) {
+            throw Error("Constructor Book() called without 'new' keyword");
+        }
+
+        // Required data for book object, including a unique randomly generated ID, as well as the book's title, author, page count, and whether the user has read it
+        this.id = crypto.randomUUID();
+        this.title = title;
+        this.author = author;
+        this.pageCount = pageCount;
+        this.haveRead = haveRead;
+
     }
 
-    // Required data for book object, including a unique randomly generated ID, as well as the book's title, author, page count, and whether the user has read it
-    this.id = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.pageCount = pageCount;
-    this.haveRead = haveRead;
-
     // Function which returns a string with all the standard info about the book
-    this.info = function() {
-    if (this.haveRead) {var readString = "Yes"}
-    else               {var readString = "No"}
+    info() {
+        if (this.haveRead) {var readString = "Yes"}
+        else               {var readString = "No"}
 
-    return `
+        return `
 
 Title: ${this.title}
 Author: ${this.author}
 Page Count: ${this.pageCount}
 Read: ${readString}
 
-    `.trim();
+        `.trim();
 
     }
 }
