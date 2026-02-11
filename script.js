@@ -53,6 +53,7 @@ function openBookFormModal() {
 
     // The form the user needs t ofill in to provide info for the book's library entry
     var bookForm = document.createElement("form");
+    bookForm.noValidate = true;
     bookForm.action = "#";
     bookForm.method = "get";
     bookForm.className = "book-form"
@@ -66,6 +67,7 @@ function openBookFormModal() {
     bookForm.appendChild(titleLabel);
 
     var titleInput = document.createElement("input");
+    titleInput.id = "name";
     titleInput.type = "text";
     titleInput.name = "name";
     titleInput.className = "text-input";
@@ -82,6 +84,7 @@ function openBookFormModal() {
     bookForm.appendChild(authorLabel);
 
     var authorInput = document.createElement("input");
+    authorInput.id = "author";
     authorInput.type = "text";
     authorInput.name = "author";
     authorInput.className = "text-input";
@@ -97,6 +100,7 @@ function openBookFormModal() {
     bookForm.appendChild(pageCountLabel);
 
     var pageCountInput = document.createElement("input");
+    pageCountInput.id = "page-count";
     pageCountInput.type = "number";
     pageCountInput.name = "pages";
     pageCountInput.className = "text-input";
@@ -117,9 +121,11 @@ function openBookFormModal() {
     bookForm.addEventListener("submit", (event) => {
         event.preventDefault();
         formData = new FormData(event.target);
-        addBookToLibrary(formData.get("name"), formData.get("author"), formData.get("pages"), false);
-        bookModalBackground.remove();
-    })
+        if (InCodeFormValidation(event)) {
+            addBookToLibrary(formData.get("name"), formData.get("author"), formData.get("pages"), false);
+            bookModalBackground.remove();
+        }
+    });
 
 
     bookModal.appendChild(bookForm);
@@ -236,6 +242,47 @@ function toggleBookRead(id) {
     }
 
     drawBooksToPage();
+}
+
+//
+function InCodeFormValidation(event) {
+    const form = event.target;
+
+    title = form.querySelector("#name");
+    title.setCustomValidity("");
+
+    console.log(title.validity);
+    console.log(title.checkValidity())
+    if (!title.checkValidity()) {
+        title.setCustomValidity("Please include a title");
+        title.reportValidity();
+        return false;
+    }
+
+    author = form.querySelector("#author");
+    author.setCustomValidity("");
+
+    if (!author.checkValidity()) {
+        author.setCustomValidity("Please include the author, or type 'Unknown'");
+        author.reportValidity();
+        return false;
+    }
+
+    pageCount = form.querySelector("#page-count");
+    pageCount.setCustomValidity("");
+
+    if (!pageCount.checkValidity()) {
+        if (pageCount.validity.rangeUnderflow) {
+            pageCount.setCustomValidity("Page count must be greater than 0");
+        } else {
+            pageCount.setCustomValidity("Please include the page count");
+        }
+
+        pageCount.reportValidity();
+        return false;
+    }
+
+    return true;
 }
 
 // Make "Add Book" button open the modal form to add new books to the library
